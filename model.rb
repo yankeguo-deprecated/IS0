@@ -1,8 +1,11 @@
 require 'active_record'
+require 'logger'
 require 'yaml'
 require 'sqlite3'
 require 'pg'
 
+ActiveRecord::Base.logger = Logger.new(STDOUT)
+ActiveSupport::LogSubscriber.colorize_logging = false
 config = YAML::load(IO.read(Zero.root + '/config/database.yml'))
 ActiveRecord::Base.establish_connection(config[Zero.env])
 

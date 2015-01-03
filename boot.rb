@@ -14,7 +14,7 @@ module Zero
   end
 
   def self.env
-    ENV['ZERO_ENV'] || 'development'
+    ENV['ZERO_ENV'] || ENV['RACK_ENV'] || 'development'
   end
 
 end
