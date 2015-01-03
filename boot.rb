@@ -2,7 +2,9 @@ require 'rubygems'
 require 'bundler/setup'
 
 require 'logger'
+require 'digest'
 require 'sinatra'
+require 'slim'
 require 'base62'
 
 module Zero
