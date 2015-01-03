@@ -1,4 +1,7 @@
 source "https://rubygems.org"
 
-gem 'sinatra',  '~> 1.4.5'
-gem 'base62',   '~> 1.0.0'
+gem 'pg',           '~> 0.17.1'
+gem 'base62',       '~> 1.0.0'
+gem 'sinatra',      '~> 1.4.5'
+gem 'sqlite3',      '~> 1.3.10'
+gem 'activerecord', '~> 4.1.4'
