@@ -17,4 +17,16 @@ module Zero
     ENV['ZERO_ENV'] || ENV['RACK_ENV'] || 'development'
   end
 
+  def self.development?
+    self.env == 'development'
+  end
+
+  def self.production?
+    self.env == 'production'
+  end
+
+  def self.test?
+    self.env == 'test'
+  end
+
 end

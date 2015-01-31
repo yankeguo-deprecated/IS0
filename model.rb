@@ -1,13 +1,30 @@
 require 'active_record'
 require 'logger'
-require 'yaml'
-require 'sqlite3'
-require 'pg'
+
+# Init DB Connection
+
+adapter = ENV['DB_ADAPTER'] || 'sqlite3'
+
+if adapter == 'sqlite3'
+  require 'sqlite3'
+else
+  require 'pg'
+end
 
 ActiveRecord::Base.logger = Logger.new(STDOUT)
-ActiveSupport::LogSubscriber.colorize_logging = false
-config = YAML::load(IO.read(Zero.root + '/config/database.yml'))
-ActiveRecord::Base.establish_connection(config[Zero.env])
+ActiveSupport::LogSubscriber.colorize_logging = !Zero.production?
+
+if adapter == 'sqlite3'
+  ActiveRecord::Base.establish_connection({
+    adapter: adapter,
+    pool: 5,
+    timeout: 5000,
+    database: "#{Zero.root}/db/#{Zero.env}.sqlite3"
+  })
+else
+end
+
+# Model Definition
 
 class Url < ActiveRecord::Base
 
